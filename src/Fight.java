@@ -16,6 +16,8 @@ public class Fight {
         Character player = new Character(playerName);
         Character computer = new Character();
 
+
+
         //Checks whether the player and the computer are dead
         while (!player.isDead() && !computer.isDead()) {
 
@@ -23,6 +25,7 @@ public class Fight {
             player.printStats();
             printOptions();
 
+            //Asks player for choice
             System.out.println("What is your next move? ");
 
             //Input for the move 1-5
@@ -35,6 +38,10 @@ public class Fight {
                 player.attack(computer);
             }
             else if (playerChoice == 2) {
+
+                while (player.getMana() <= fireballMana) {
+                    System.out.println("You are out of mana!");
+                }
                 //Fireball
                 if (player.getMana() >= fireballMana) {
                     player.fireball(computer);
@@ -46,7 +53,6 @@ public class Fight {
                 if (player.getMana() >= healSpellMana) {
                     player.healSpell();
                 }
-
             }
 
 
@@ -59,19 +65,16 @@ public class Fight {
             }
 
             //Clears the console
-            System.out.println("\033[H\033[2J");
+            //System.out.println("\f");
 
         }
-
-
-
-
     }
 
     public static void printOptions() {
         System.out.println();
-        System.out.println("[1] Attack \n[2] Fireball \n[3] Cast a Heal Spell");
+        System.out.println("[1] Melee \n[2] Spells \n[3] Run \n[4] Rest \n[5] Run");
         System.out.println();
     }
+
 }
 
