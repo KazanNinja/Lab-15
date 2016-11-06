@@ -46,7 +46,7 @@ public class Character {
         health = 120;
         maxHealth = 120;
         maxMana = 0;
-        mana = 0;
+        mana = 20;
         minDamage = 15;
         maxDamage = 20;
 

@@ -3,12 +3,11 @@ import java.util.Scanner;
 public class Fight {
 
     public static final int healSpellMana = 35;
-
     public static final int fireballMana = 43;
-
     public static final int icespikeMana = 51;
-
     public static final int lightningboltMana = 60;
+
+    public static final int pigHeal = 30;
 
     public static void main(String[] args) throws InterruptedException {
         Scanner sc = new Scanner(System.in);
@@ -39,13 +38,13 @@ public class Fight {
         if (fightOrNot == 1) {
             System.out.print("You decide to fight the pig");
 
-            Thread.sleep(700);
+            Thread.sleep(500);
             System.out.print(".");
-            Thread.sleep(700);
+            Thread.sleep(500);
             System.out.print(".");
-            Thread.sleep(700);
+            Thread.sleep(500);
             System.out.print(".");
-            Thread.sleep(700);
+            Thread.sleep(500);
 
             System.out.println("\n");
 
@@ -61,30 +60,55 @@ public class Fight {
         //Checks whether the player and the computer are dead
         while (!player.isDead() && !computer.isDead()) {
 
+            System.out.println();
+
             //Prints player's options they have and their stats
             player.printStats();
             printOptions();
 
             //Asks player for choice
-            System.out.println("What is your move? ");
+            System.out.print("What is your move? ");
 
             //Input for the move 1-5
             int playerChoice = sc.nextInt();
 
-            while (playerChoice != 1 || playerChoice != 2 || playerChoice != 3 || playerChoice != 4 || playerChoice != 5) {
-                System.out.println("Choose 1-5");
-                playerChoice = sc.nextInt();
-            }
 
             //Player outcomes of their choice
+
+            //MELEE ---------------------------------------------------------------------------------------------------
             if (playerChoice == 1) {
 
-                //Attack
-                player.attack(computer);
+                printMeleeOptions();
+                playerChoice = sc.nextInt();
+
+                //Pet
+                if (playerChoice == 1) {
+                    System.out.print("You pet the pig...\n");
+
+                    if (computer.getHealth() + pigHeal <= computer.getHealth()) {
+                        System.out.println("The pig was healed by " + pigHeal + " points!");
+                    }
+                    else {
+                        System.out.print("Nothing really happens...");
+                        sc.nextLine();
+                        sc.nextLine();
+                    }
+                }
+
+                //Punch it
+                else if (playerChoice == 2 && player.getMana() >= icespikeMana) {
+                    player.icespike(computer);
+                }
+
+                //Sword Bolt
+                else if (playerChoice == 3 && player.getMana() >= lightningboltMana) {
+                    player.lightningbolt(computer);
+                }
             }
+            //MELEE ---------------------------------------------------------------------------------------------------
 
             //SPELLS --------------------------------------------------------------------------------------------------
-            else if (playerChoice == 2) {
+            if (playerChoice == 2 && (player.getMana() >= fireballMana || player.getMana() >= icespikeMana || player.getMana() >= lightningboltMana)) {
                 printSpellOptions();
                 playerChoice = sc.nextInt();
 
@@ -111,13 +135,19 @@ public class Fight {
                     player.lightningbolt(computer);
                 }
                 //heal Spell
-                if (playerChoice == 4 && player.getMana() >= healSpellMana && player.getHealth()-35 < player.getHealth()) {
+                if (playerChoice == 4 && player.getMana() >= healSpellMana && player.getHealth() - 35 < player.getHealth()) {
                     player.healSpell();
                 }
+            } else {
+                System.out.println("Not Enough Mana!");
             }
             //SPELLS --------------------------------------------------------------------------------------------------
 
 
+            System.out.println();
+
+            //PRINTING THE COPMPUTER STATS AND STUFF
+            computer.printStats();
 
             //Checks if the player or the computer lost and prints the winner
             if (player.getHealth() <= 0) {
@@ -127,8 +157,8 @@ public class Fight {
                 System.out.println("You Won!");
             }
 
-            //PRINTING THE COPMPUTER STATS AND STUFF
-            computer.printStats();
+
+
 
             //Clears the console
             //System.out.println("\f");
@@ -150,7 +180,7 @@ public class Fight {
 
     public static void printMeleeOptions() {
         System.out.println("MELEE ATTACKS: ");
-        System.out.println("[1] Pet it \n[2] Punch It \n[3] Attack With Sword \n[4] ");
+        System.out.println("[1] Pet it \n[2] Punch It \n[3] Attack With Sword");
         System.out.println();
 
     }
