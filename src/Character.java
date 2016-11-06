@@ -108,15 +108,18 @@ public class Character {
         enemy.takeDamage(random);
     }
 
-    public void fireball(Character enemy) {
+    public void fireball(Character enemy, boolean print) {
         Scanner sc = new Scanner(System.in);
 
         if (mana >= fireballMana) {
             mana = mana - fireballMana;
             enemy.takeDamage(fireballDamage);
 
-            System.out.println("\nYou shoot a fireball and do " + fireballDamage + " damage!");
-            sc.nextLine();
+            if (print) {
+                System.out.println("\nYou shoot a fireball and do " + fireballDamage + " damage!");
+                sc.nextLine();
+            }
+
 
         }
         else {

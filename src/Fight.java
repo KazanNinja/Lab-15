@@ -133,7 +133,7 @@ public class Fight {
 
                 //Fireball
                 if (playerChoice == 1 && player.getMana() >= fireballMana) {
-                    player.fireball(computer);
+                    player.fireball(computer, true);
                 }
                 //Icespike
                 else if (playerChoice == 2 && player.getMana() >= icespikeMana) {
@@ -179,7 +179,7 @@ public class Fight {
             }
 
             //PIGS TURN
-            int pigChoice = (int) ( 1 + Math.random() * 3);
+            int pigChoice = (int) ( 1 + Math.random() * 4);
             //System.out.println("PIG CHOICE :" + pigChoice);
 
             if (pigChoice == 1) {
@@ -187,12 +187,17 @@ public class Fight {
                 computer.attack(player);
             }
             else if (pigChoice == 2) {
-                System.out.println("\nThe" + computer.getName() + " tackled you!");
+                System.out.println("\nThe " + computer.getName() + " tackled you!");
                 computer.punch(player);
 
-            } else if (pigChoice == 3) {
+            }
+            else if (pigChoice == 3) {
                 System.out.println("The " + computer.getName() + " threw some mud at you!");
                 player.takeDamage(10);
+            }
+            else if (pigChoice == 4 && computer.getMana() >= fireballMana) {
+                System.out.println("The " + computer.getName() + " launched a fireball at you! How can it even do that?");
+                computer.fireball(player, false);
             }
 
             System.out.println();
@@ -207,7 +212,7 @@ public class Fight {
             else if (computer.getHealth() <= 0) {
                 computer.setHealth(0);
                 computer.printStats();
-                System.out.println("The " + computer.getName() + " has been defeated!");
+                System.out.println("The " + computer.getName() + " has been defeated! You Win!");
                 System.exit(0);
             }
 
