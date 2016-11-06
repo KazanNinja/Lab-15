@@ -96,19 +96,24 @@ public class Fight {
                 }
 
                 //Punch it
-                else if (playerChoice == 2 && player.getMana() >= icespikeMana) {
-                    player.icespike(computer);
+                else if (playerChoice == 2) {
+                    System.out.print("You punch the " + computer.getName() + " and do 20 damage");
+                    player.punch(computer);
+                    sc.nextLine();
+                    sc.nextLine();
+                    System.out.print("You feel terrible on the inside...");
+                    sc.nextLine();
                 }
 
-                //Sword Bolt
-                else if (playerChoice == 3 && player.getMana() >= lightningboltMana) {
-                    player.lightningbolt(computer);
+                //Sword
+                else if (playerChoice == 3) {
+                    player.attack(computer);
                 }
             }
             //MELEE ---------------------------------------------------------------------------------------------------
 
             //SPELLS --------------------------------------------------------------------------------------------------
-            if (playerChoice == 2 && (player.getMana() >= fireballMana || player.getMana() >= icespikeMana || player.getMana() >= lightningboltMana)) {
+            else if (playerChoice == 2 && (player.getMana() >= fireballMana || player.getMana() >= icespikeMana || player.getMana() >= lightningboltMana)) {
                 printSpellOptions();
                 playerChoice = sc.nextInt();
 
@@ -138,8 +143,9 @@ public class Fight {
                 if (playerChoice == 4 && player.getMana() >= healSpellMana && player.getHealth() - 35 < player.getHealth()) {
                     player.healSpell();
                 }
-            } else {
-                System.out.println("Not Enough Mana!");
+            }
+            else {
+                System.out.println("UH OHHHHH");
             }
             //SPELLS --------------------------------------------------------------------------------------------------
 
@@ -168,7 +174,7 @@ public class Fight {
 
     public static void printOptions() {
         System.out.println();
-        System.out.println("[1] Melee Attack\n[2] Spells \n[3] Run \n[4] Rest \n[5] Run");
+        System.out.println("[1] Melee Attack\n[2] Spells \n[3] Run \n[4] Run");
         System.out.println();
     }
 

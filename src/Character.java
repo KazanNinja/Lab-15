@@ -154,6 +154,10 @@ public class Character {
         }
     }
 
+    public void punch(Character enemy) {
+        enemy.takeDamage(30);
+    }
+
 
 
 
