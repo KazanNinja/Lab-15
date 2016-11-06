@@ -85,7 +85,9 @@ public class Character {
         return name;
     }
 
-
+    public void setHealth(int health) {
+        this.health = health;
+    }
 
     public void heal(int n) {
         if (n > 0) {
@@ -118,7 +120,7 @@ public class Character {
             mana = mana - fireballMana;
             enemy.takeDamage(fireballDamage);
 
-            System.out.println("You shoot a fireball and do " + fireballDamage);
+            System.out.println("You shoot a fireball and do " + fireballDamage + " damage!");
 
         }
         else {
@@ -131,7 +133,7 @@ public class Character {
             mana = mana - icespikeMana;
             enemy.takeDamage(icespikeDamage);
 
-            System.out.println("You shoot an icespike and do " + icespikeDamage);
+            System.out.println("You shoot an icespike and do " + icespikeDamage + " damage!");
 
         }
         else {
@@ -145,7 +147,7 @@ public class Character {
             mana = mana - lightningboltMana;
             enemy.takeDamage(lightningboltDamage);
 
-            System.out.println("You shoot an icespike and do " + lightningboltDamage);
+            System.out.println("You shoot an lightningbolt and do " + lightningboltDamage + " damage!");
         }
         else {
             System.out.println("You are out of mana!");
@@ -188,7 +190,7 @@ public class Character {
         System.out.println();
 
         //For every 5 stamina print out a block
-        System.out.print(mana + " Stamina: ");
+        System.out.print(stamina + " Stamina: ");
 
         for(int i = 0; i < stamina/5; i++) {
             System.out.print("▉");
