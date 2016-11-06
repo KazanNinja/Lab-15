@@ -64,6 +64,7 @@ public class Fight {
 
             //Prints player's options they have and their stats
             player.printStats();
+            computer.printStats();
             printOptions();
 
             //Asks player for choice
@@ -83,7 +84,7 @@ public class Fight {
 
                 //Pet
                 if (playerChoice == 1) {
-                    System.out.print("You pet the pig...\n");
+                    System.out.print("\nYou pet the pig...\n");
 
                     if (computer.getHealth() + pigHeal <= computer.getHealth()) {
                         System.out.println("The pig was healed by " + pigHeal + " points!");
@@ -97,7 +98,7 @@ public class Fight {
 
                 //Punch it
                 else if (playerChoice == 2) {
-                    System.out.print("You punch the " + computer.getName() + " and do 20 damage");
+                    System.out.print("\nYou punch the " + computer.getName() + " and do 20 damage");
                     player.punch(computer);
                     sc.nextLine();
                     sc.nextLine();
@@ -107,6 +108,7 @@ public class Fight {
 
                 //Sword
                 else if (playerChoice == 3) {
+                    System.out.println("\nYou swing your Nerf sword at the pig, and do a bit of damage");
                     player.attack(computer);
                 }
             }
@@ -144,37 +146,68 @@ public class Fight {
                     player.healSpell();
                 }
             }
-            else {
-                System.out.println("UH OHHHHH");
+            else if (playerChoice == 3) {
+                System.out.print("\nYou runaway from the " + computer.getName() + " screaming");
+                sc.nextLine();
+                sc.nextLine();
+                System.exit(0);
+
+            } else {
+                System.out.println("You Can't Do That!");
             }
             //SPELLS --------------------------------------------------------------------------------------------------
 
+            //Checks if the player or the computer lost and prints the winner
+            if (player.getHealth() <= 0) {
+                System.out.println("You Lost! HAHA!!!");
+                System.exit(0);
+            }
+            else if (computer.getHealth() <= 0) {
+                System.out.println("The " + computer.getName() + " has been defeated!");
+                System.exit(0);
+            }
+
+            //PIGS TURN
+            int pigChoice = (int) ( 1 + Math.random() * 3);
+            System.out.println("PIG CHOICE :" + pigChoice);
+
+            if (pigChoice == 1) {
+                System.out.println("\nThe " + computer.getName() + " attacked you!");
+                computer.attack(player);
+            }
+            else if (pigChoice == 2) {
+                System.out.println("\nThe" + computer.getName() + " tackled you!");
+                computer.punch(player);
+
+            } else if (pigChoice == 3) {
+                System.out.println("The " + computer.getName() + " threw some mud at you!");
+                player.takeDamage(10);
+            }
 
             System.out.println();
 
-            //PRINTING THE COPMPUTER STATS AND STUFF
-            computer.printStats();
-
             //Checks if the player or the computer lost and prints the winner
             if (player.getHealth() <= 0) {
-                System.out.println("You Lost!");
+                System.out.println("You Lost! HAHA!!!");
+                System.exit(0);
             }
             else if (computer.getHealth() <= 0) {
-                System.out.println("You Won!");
+                System.out.println("The " + computer.getName() + " has been defeated!");
+                System.exit(0);
             }
 
 
 
 
             //Clears the console
-            //System.out.println("\f");
+            System.out.println("\f");
 
         }
     }
 
     public static void printOptions() {
         System.out.println();
-        System.out.println("[1] Melee Attack\n[2] Spells \n[3] Run \n[4] Run");
+        System.out.println("[1] Melee Attack\n[2] Spells \n[3] Run");
         System.out.println();
     }
 

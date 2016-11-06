@@ -21,8 +21,6 @@ public class Character {
     public final int lightningboltMana = 60;
     public final int lightningboltDamage = 45;
 
-    //Extra Credit
-    private int stamina;
 
 
     public Character(String newName) {
@@ -36,22 +34,18 @@ public class Character {
         minDamage = 12;
         maxDamage = 16;
 
-        //Extra Credit Stuff
-        stamina = 100;
     }
 
     public Character() {
-        name = "CPU";
+        name = "PIG";
 
         health = 120;
         maxHealth = 120;
         maxMana = 0;
-        mana = 20;
+        mana = 60;
         minDamage = 15;
         maxDamage = 20;
 
-        //Extra Credit Stuff
-        stamina = 100;
     }
 
 
@@ -77,9 +71,6 @@ public class Character {
         return mana;
     }
 
-    public int getStamina() {
-        return stamina;
-    }
 
     public String getName() {
         return name;
@@ -120,7 +111,7 @@ public class Character {
             mana = mana - fireballMana;
             enemy.takeDamage(fireballDamage);
 
-            System.out.println("You shoot a fireball and do " + fireballDamage + " damage!");
+            System.out.println("\nYou shoot a fireball and do " + fireballDamage + " damage!");
 
         }
         else {
@@ -133,7 +124,7 @@ public class Character {
             mana = mana - icespikeMana;
             enemy.takeDamage(icespikeDamage);
 
-            System.out.println("You shoot an icespike and do " + icespikeDamage + " damage!");
+            System.out.println("\nYou shoot an icespike and do " + icespikeDamage + " damage!");
 
         }
         else {
@@ -147,7 +138,7 @@ public class Character {
             mana = mana - lightningboltMana;
             enemy.takeDamage(lightningboltDamage);
 
-            System.out.println("You shoot an lightningbolt and do " + lightningboltDamage + " damage!");
+            System.out.println("\nYou shoot an lightningbolt and do " + lightningboltDamage + " damage!");
         }
         else {
             System.out.println("You are out of mana!");
@@ -155,7 +146,7 @@ public class Character {
     }
 
     public void punch(Character enemy) {
-        enemy.takeDamage(30);
+        enemy.takeDamage(20);
     }
 
 
@@ -189,14 +180,6 @@ public class Character {
         System.out.print(mana + " Mana:    ");
 
         for(int i = 0; i < mana/5; i++) {
-            System.out.print("▉");
-        }
-        System.out.println();
-
-        //For every 5 stamina print out a block
-        System.out.print(stamina + " Stamina: ");
-
-        for(int i = 0; i < stamina/5; i++) {
             System.out.print("▉");
         }
         System.out.println();
