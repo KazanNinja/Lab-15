@@ -1,3 +1,4 @@
+import java.util.Scanner;
 
 public class Character {
 
@@ -66,6 +67,7 @@ public class Character {
         return health;
     }
 
+
     public int getMana() {
 
         return mana;
@@ -107,11 +109,14 @@ public class Character {
     }
 
     public void fireball(Character enemy) {
+        Scanner sc = new Scanner(System.in);
+
         if (mana >= fireballMana) {
             mana = mana - fireballMana;
             enemy.takeDamage(fireballDamage);
 
             System.out.println("\nYou shoot a fireball and do " + fireballDamage + " damage!");
+            sc.nextLine();
 
         }
         else {
@@ -120,11 +125,14 @@ public class Character {
     }
 
     public void icespike(Character enemy) {
+        Scanner sc = new Scanner(System.in);
+
         if (mana >= icespikeMana) {
             mana = mana - icespikeMana;
             enemy.takeDamage(icespikeDamage);
 
             System.out.println("\nYou shoot an icespike and do " + icespikeDamage + " damage!");
+            sc.nextLine();
 
         }
         else {
@@ -133,12 +141,15 @@ public class Character {
     }
 
     public void lightningbolt(Character enemy) {
+        Scanner sc = new Scanner(System.in);
+
         if (mana >= lightningboltMana) {
             //Subtracts Mana points and gives enemy damage
             mana = mana - lightningboltMana;
             enemy.takeDamage(lightningboltDamage);
 
             System.out.println("\nYou shoot an lightningbolt and do " + lightningboltDamage + " damage!");
+            sc.nextLine();
         }
         else {
             System.out.println("You are out of mana!");

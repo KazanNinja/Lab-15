@@ -90,7 +90,7 @@ public class Fight {
                         System.out.println("The pig was healed by " + pigHeal + " points!");
                     }
                     else {
-                        System.out.print("Nothing really happens...");
+                        System.out.print("Nothing really happens... EXCEPT THAT IT ATTACKS YOU!!!\n");
                         sc.nextLine();
                         sc.nextLine();
                     }
@@ -102,13 +102,15 @@ public class Fight {
                     player.punch(computer);
                     sc.nextLine();
                     sc.nextLine();
-                    System.out.print("You feel terrible on the inside...");
+                    System.out.print("You feel terrible on the inside...\n");
                     sc.nextLine();
                 }
 
                 //Sword
                 else if (playerChoice == 3) {
                     System.out.println("\nYou swing your Nerf sword at the pig, and do a bit of damage");
+                    sc.nextLine();
+                    sc.nextLine();
                     player.attack(computer);
                 }
             }
@@ -146,6 +148,11 @@ public class Fight {
                     player.healSpell();
                 }
             }
+            else if (playerChoice == 2 && (player.getMana() <= fireballMana)) {
+                System.out.print("You Are Out Of Mana! You Wasted Your Time Fumbling Your \"Magic Wand\" and the Pig Attacked");
+                sc.nextLine();
+                sc.nextLine();
+            }
             else if (playerChoice == 3) {
                 System.out.print("\nYou runaway from the " + computer.getName() + " screaming");
                 sc.nextLine();
@@ -159,17 +166,21 @@ public class Fight {
 
             //Checks if the player or the computer lost and prints the winner
             if (player.getHealth() <= 0) {
+                player.setHealth(0);
+                player.printStats();
                 System.out.println("You Lost! HAHA!!!");
                 System.exit(0);
             }
             else if (computer.getHealth() <= 0) {
-                System.out.println("The " + computer.getName() + " has been defeated!");
+                computer.setHealth(0);
+                computer.printStats();
+                System.out.println("\nThe " + computer.getName() + " has been defeated!");
                 System.exit(0);
             }
 
             //PIGS TURN
             int pigChoice = (int) ( 1 + Math.random() * 3);
-            System.out.println("PIG CHOICE :" + pigChoice);
+            //System.out.println("PIG CHOICE :" + pigChoice);
 
             if (pigChoice == 1) {
                 System.out.println("\nThe " + computer.getName() + " attacked you!");
@@ -188,10 +199,14 @@ public class Fight {
 
             //Checks if the player or the computer lost and prints the winner
             if (player.getHealth() <= 0) {
+                player.setHealth(0);
+                player.printStats();
                 System.out.println("You Lost! HAHA!!!");
                 System.exit(0);
             }
             else if (computer.getHealth() <= 0) {
+                computer.setHealth(0);
+                computer.printStats();
                 System.out.println("The " + computer.getName() + " has been defeated!");
                 System.exit(0);
             }
