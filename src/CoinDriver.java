@@ -4,8 +4,7 @@ public class CoinDriver {
         Coin fairCoin = new Coin();
         Coin biasedCoin = new Coin(0.7);
 
-        biasedCoin.flip();
-        fairCoin.flip();
+        System.out.println(biasedCoin.flip(1000));
 
     }
 }
