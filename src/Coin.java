@@ -27,7 +27,8 @@ public class Coin {
 
         System.out.println("Face: " + face);
     }
-    public void flip(int n) {
+
+    public int flip(int n) {
         int heads = 0;
         int tails = 0;
         for(int i = 0; i < n; i++) {
@@ -43,9 +44,7 @@ public class Coin {
             }
         }
 
-
-        System.out.println("Heads: " + heads);
-        System.out.println("Tails: " + tails);
+        return heads;
     }
 
     public boolean isHeads() {
